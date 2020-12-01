@@ -1,5 +1,7 @@
 package com.example.algamoneyapi.event.listener;
 
+import java.net.URI;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.context.ApplicationListener;
@@ -20,6 +22,8 @@ public class RecursoCriadoListener implements ApplicationListener<RecursoCriadoE
 	}
 	
 	private void adicionarHeaderLocation(HttpServletResponse response, Long codigo) {
-		ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{codigo}").buildAndExpand(codigo).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{codigo}")
+				.buildAndExpand(codigo).toUri();
+		response.setHeader("Location", uri.toASCIIString());
 	}
 }

@@ -72,9 +72,3 @@ public class PessoaResource {
 		pessoaService.atualizarPropriedadeAtivo(codigo, ativo);
 	}
 }
-
-
-
-
-
-
