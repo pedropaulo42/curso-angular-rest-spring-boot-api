@@ -35,7 +35,7 @@ public class Lancamento {
 	private String observacao;
 	
 	@Enumerated(EnumType.STRING)
-	private TipoLacamento tipo;
+	private TipoLancamento tipo;
 	
 	@ManyToOne
 	@JoinColumn(name = "codigo_categoria")
@@ -49,7 +49,7 @@ public class Lancamento {
 	}
 
 	public Lancamento(Long codigo, String descricao, LocalDate dataVencimento, LocalDate dataPagamento,
-			BigDecimal valor, String observacao, TipoLacamento tipo, Categoria categoria, Pessoa pessoa) {
+			BigDecimal valor, String observacao, TipoLancamento tipo, Categoria categoria, Pessoa pessoa) {
 		super();
 		this.codigo = codigo;
 		this.descricao = descricao;
@@ -110,11 +110,11 @@ public class Lancamento {
 		this.observacao = observacao;
 	}
 
-	public TipoLacamento getTipo() {
+	public TipoLancamento getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(TipoLacamento tipo) {
+	public void setTipo(TipoLancamento tipo) {
 		this.tipo = tipo;
 	}
 

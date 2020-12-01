@@ -1,6 +1,6 @@
 package com.example.algamoneyapi.model;
 
-public enum TipoLacamento {
+public enum TipoLancamento {
 	
 	RECEITA,
 	DESPESA
