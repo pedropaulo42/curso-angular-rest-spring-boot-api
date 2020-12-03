@@ -35,16 +35,16 @@ public class CategoriaResource {
 		return categoriaRepository.findAll();
 	}
 
+	@GetMapping("/{codigo}")
+	public ResponseEntity<Categoria> buscarPeloCodigo(@PathVariable Long codigo) {
+		Categoria categoria = categoriaRepository.findById(codigo).orElse(null);
+		return categoria != null ? ResponseEntity.ok().body(categoria) : ResponseEntity.notFound().build();
+	}
+	
 	@PostMapping
 	public ResponseEntity<Categoria> criar(@Valid @RequestBody Categoria categoria, HttpServletResponse response) {
 		Categoria categoriaSalva = categoriaRepository.save(categoria);
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, categoriaSalva.getCodigo()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(categoriaSalva);
-	}
-	
-	@GetMapping("/{codigo}")
-	public ResponseEntity<Categoria> buscarPeloCodigo(@PathVariable Long codigo) {
-		Categoria categoria = categoriaRepository.findById(codigo).orElse(null);
-		return categoria != null ? ResponseEntity.ok().body(categoria) : ResponseEntity.notFound().build();
 	}
 }
